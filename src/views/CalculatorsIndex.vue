@@ -2,7 +2,7 @@
 
 </script>
 <template>
-    <div id="main-page-wrapper" class="container-sm">
+    <div id="main-page-wrapper" class="container-sm my-4">
 
         <h1 class="text-center my-4">
             All Calculators

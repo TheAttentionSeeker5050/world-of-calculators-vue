@@ -9,3 +9,10 @@ $navbar-bg: $primary;
 .bg-primary {
     background-color: $primary !important;
 }
+
+.text-primary {
+    color: $primary !important;
+}
+.text-primary:hover {
+    color: $primary-emphasis !important;
+}
