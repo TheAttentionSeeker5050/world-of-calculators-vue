@@ -21,6 +21,8 @@ import './styles/custom.scss';
 #main-page-wrapper {
   max-width: 800px;
   text-align: justify;
+  margin-top: 35px;
+  margin-bottom: 25px;
 }
 
 
