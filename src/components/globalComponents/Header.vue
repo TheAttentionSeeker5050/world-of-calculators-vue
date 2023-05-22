@@ -3,7 +3,7 @@
 </script>
 <template>
 
-<nav class="navbar navbar-expand-lg primary-emphasis background-color-purple text-color-white py-3 px-1 bg-primary " id="g-navbar">
+<nav class="navbar navbar-expand-lg primary-emphasis py-3 px-1 bg-primary " id="g-navbar">
     <div class="container-fluid ">
         <a class="navbar-brand text-white" href="#">World Of Calculators</a>
         <button class="navbar-toggler" id="expanding-menu-button" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
