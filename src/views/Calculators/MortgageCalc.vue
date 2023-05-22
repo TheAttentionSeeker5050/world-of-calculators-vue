@@ -2,7 +2,7 @@
     import {currencyFormat} from "../../components/commonFunctions/filters";
     import {calcLoanRecurrentPayment, splitInterestRate} from "../../components/commonFunctions/loanPayments";
     import {calcAssetMaintenanceCost, calcOverallAssetCost, calcAssetMaintenanceCostTotal} from "../../components/commonFunctions/commonAssetCosts";
-    
+    import  ChartComponent  from "../../components/ChartComponent.vue"
     export default {
         data() {
             return {
@@ -23,7 +23,18 @@
                 amortizationTableMonthly: [],
                 mortgagePayoffDate: null,
                 totalInterest: null,
-                
+
+                // charts and graphs
+                costSplitChartTitle: null,
+                costSplitChartData: {},
+                costSplitChartOptions: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    },
+                },               
                 // form input props
                 homePrice: 400000,
                 downPayment: 30,
@@ -47,6 +58,9 @@
                 // state props
                 displayResults: false,
             };
+        },
+        components: {
+            ChartComponent,
         },
         methods: {
             calculateMortgage() {
@@ -99,6 +113,8 @@
                     // display split mortgage cost section
                     this.totalInterest = this.calcTotalInterest();
 
+                    // generate charts
+                    this.generatePieChart()
                 } catch (e) {
                     
                     console.error(e.message);
@@ -195,10 +211,45 @@
             },
             formatCurrency(value) {
                 return currencyFormat(value);
-            }
+            },
+            generatePieChart(){
+                this.costSplitChartTitle = 'Overall Costs Breakdown';
+                const data = {
+                    labels: [
+                        'Principal',
+                        'Interest',
+                        'Property Tax',
+                        'Home Insurance',
+                        'Other Costs'
+                    ],
+                    datasets: [{
+                        label: this.costSplitChartTitle,
+                        data: [
+                            this.mortgagePaymentTotal-this.totalInterest,
+                            this.totalInterest,
+                            this.propertyTaxesTotal,
+                            this.homeInsuranceTotal,
+                            this.otherCostsTotal
+                        ],
+                        backgroundColor: [
+                        'rgb(255, 190, 11)',
+                        'rgb(251, 86, 7)',
+                        'rgb(255, 0, 110)',
+                        'rgb(131, 56, 236)',
+                        'rgb(58, 134, 255)'
+                        ],
+                        hoverOffset: 4
+                    }]
+                };
+                this.costSplitChartData = {
+                    type: "doughnut",
+                    data: data,
+                };
+            },
         },
         mounted() {
             console.log("Vue 3 mounted");
+            document.title = "World of Calculators - Mortgage Calculator";
         },
         
     };
@@ -313,11 +364,11 @@
 
         </div>
 
-        <div class="text-center my-3">
-            <button type="button" id="calculate-button" class="btn btn-primary mx-auto" @click="calculateMortgage">
+        <div class="text-center my-3 mx-auto grid gap-3">
+            <button type="button" id="calculate-button" class="btn btn-secondary me-4" @click="calculateMortgage">
                 Calculate
             </button>
-            <button type="button" id="reset-button" class="btn btn-secondary mx-auto " @click="resetForm">Reset</button>
+            <button type="button" id="reset-button" class="btn btn-danger " @click="resetForm">Reset</button>
         </div>
 
 
@@ -377,7 +428,7 @@
                 </div>
             </div>
             <div class="row" id="cost-split-graph-section">
-                [Add a graph, probably with graph.js]
+                <ChartComponent v-if="displayResults==true" :options="costSplitChartOptions" :chartData="costSplitChartData" :chartTitle="costSplitChartTitle"/>
             </div>
             <div class="row" id="total-mortgage-cost-table-section">
                 <table class="table">

@@ -1,5 +1,9 @@
-<script setup>
-
+<script >
+    export default {
+        mounted() {
+            document.title = "World of Calculators - Home";
+        }
+    }
 </script>
 <template>
     <div id="main-page-wrapper" class="container-sm" >
