@@ -1,6 +1,5 @@
 <template>
     <div id="canvas-container">
-        <h1>Chart</h1>
         <canvas ref="chartCanvas"></canvas>
     </div>
 </template>
@@ -54,5 +53,9 @@
 
 </script>
 <style scoped>
-
+    canvas {
+        max-width: 500px;
+        max-height: 500px;
+        margin: 20px auto;
+    }
 </style>
