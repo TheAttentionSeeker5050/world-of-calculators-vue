@@ -1,6 +1,8 @@
 <script >
-    import {currencyFormat} from "../../components/commonFunctions/filters"
-    import {calcLoanRecurrentPayment} from "../../components/commonFunctions/calcLoanPayments"
+    import {currencyFormat} from "../../components/commonFunctions/filters";
+    import {calcLoanRecurrentPayment, splitInterestRate} from "../../components/commonFunctions/loanPayments";
+    import {calcAssetMaintenanceCost, calcOverallAssetCost, calcAssetMaintenanceCostTotal} from "../../components/commonFunctions/commonAssetCosts";
+    
     export default {
         data() {
             return {
@@ -63,8 +65,8 @@
                 this.mortgageAmount = price - this.downPaymentDollars;
                 
                 // split rate into 12 months
-                const interestRateMonthly = this.interestRate/(12*100);
-            
+                // const interestRateMonthly =  this.interestRate/(12*100);
+                const interestRateMonthly = splitInterestRate(this.interestRate, 12);
                 // calculate monthly payment
                 const numberOfPayments = this.loanTermYears*12;
                 
@@ -112,33 +114,18 @@
             
             calcMonthlyPayment(loanAmount, interestRate,numberOfPayments) {
                 return calcLoanRecurrentPayment(loanAmount, interestRate,numberOfPayments);
-
             },
-            calcAdditionalCostMontly(value, costUnit) {
-                // calculate any of the other costs based on the home price, the cost value and it's cost units (dollars or percent) set in the form
-                // this function is generic and applies to property taxes, home insurance, PMI insurance, HOA fee and other costs.
-                let result;
+            calcAdditionalCostMontly(cost, costUnit) {
+                return calcAssetMaintenanceCost(this.homePrice, cost, costUnit);
 
-                if (costUnit==="percent") {
-                    result = this.homePrice*value/(100*12);
-                    return result;
-
-                } else if (costUnit === "dollars") {
-                    result = value/12;
-                    return result;
-
-                } else {
-                    console.error("invalid property tax units, check your calculator form input");
-                    return NaN;
-                }
             },
             calcAdditionalCostTotal(monthlyCost, numberOfPayments) {
-                let result = monthlyCost*numberOfPayments;
-                return result;
+                return calcAssetMaintenanceCostTotal(monthlyCost, numberOfPayments)
             },
             calcTotalOutOfPocket(numberOfPayments) {
-                this.totalOutOfPocketMontly = this.mortgagePaymentMontly + this.propertyTaxesMontly + this.homeInsuranceMontly + this.otherCostsMontly;
-                this.totalOutOfPocketTotal = this.totalOutOfPocketMontly * numberOfPayments
+                
+                this.totalOutOfPocketMontly = calcOverallAssetCost(this.mortgagePaymentMontly, this.propertyTaxesMontly, this.homeInsuranceMontly, this.otherCostsMontly);
+                this.totalOutOfPocketTotal = calcAssetMaintenanceCostTotal(this.totalOutOfPocketMontly, numberOfPayments);
             },
             calcAmortizationTable() {
                 // the list will contain dictionaries with the structure:
@@ -162,7 +149,8 @@
                     principal = 0;
                     for (let j = 0; j < 12; j++) {
                     // so we will compute the interest and the principal for all the 12 months of a year
-                    let currentMonthInterest = endingBalance*(this.interestRate/(12*100));
+                    // let currentMonthInterest = endingBalance*(this.interestRate/(12*100));
+                    let currentMonthInterest = endingBalance*splitInterestRate(this.interestRate, 12);
                     let currentMonthPrincipal = this.mortgagePaymentMontly - currentMonthInterest;
                     
                     
@@ -218,7 +206,7 @@
 </script>
 
 <template>
-    <div id="main-page-wrapper" class="my-4 container-sm">
+    <div id="main-page-wrapper" class="my-5 container-sm">
     <h1 class="text-center my-4">Mortgage Calculator</h1>
 
     <form id="calculator-form" class="container-fluid ">
@@ -425,7 +413,7 @@
             </div>
         </div>
         
-        <div class="container" id="amortization-table">
+        <div class="container my-2" id="amortization-table">
             <h4>Amortization schedule</h4>
             <select class="form-select" aria-label="switch-amortization-monthly-yearly" v-model="amortizationSpan">
                 
@@ -463,9 +451,7 @@
         </div>
 
 
-        <div class="container" id="information-box">
-
-        </div>
+        
     </div>
 
     
