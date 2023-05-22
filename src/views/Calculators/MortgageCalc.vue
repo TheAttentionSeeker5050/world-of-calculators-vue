@@ -2,7 +2,7 @@
     import {currencyFormat} from "../../components/commonFunctions/filters";
     import {calcLoanRecurrentPayment, splitInterestRate} from "../../components/commonFunctions/loanPayments";
     import {calcAssetMaintenanceCost, calcOverallAssetCost, calcAssetMaintenanceCostTotal} from "../../components/commonFunctions/commonAssetCosts";
-    import  DonutChart  from "../../components/donutChart.vue"
+    import  ChartComponent  from "../../components/ChartComponent.vue"
     export default {
         data() {
             return {
@@ -59,6 +59,9 @@
                 displayResults: false,
             };
         },
+        components: {
+            ChartComponent,
+        },
         methods: {
             calculateMortgage() {
                 const price = Number(this.homePrice);
@@ -110,6 +113,8 @@
                     // display split mortgage cost section
                     this.totalInterest = this.calcTotalInterest();
 
+                    // generate charts
+                    this.generatePieChart()
                 } catch (e) {
                     
                     console.error(e.message);
@@ -240,7 +245,6 @@
                     type: "doughnut",
                     data: data,
                 };
-
             },
         },
         mounted() {
@@ -423,7 +427,7 @@
                 </div>
             </div>
             <div class="row" id="cost-split-graph-section">
-                <DonutChart v-if="displayResults== true" :options="costSplitChartOptions" :chartData="costSplitChartData" :chartTitle="costSplitChartTitle"/>
+                <ChartComponent v-if="displayResults==true" :options="costSplitChartOptions" :chartData="costSplitChartData" :chartTitle="costSplitChartTitle"/>
             </div>
             <div class="row" id="total-mortgage-cost-table-section">
                 <table class="table">
