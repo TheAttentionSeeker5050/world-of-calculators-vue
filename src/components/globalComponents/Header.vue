@@ -26,7 +26,7 @@
                 Calculators </a>
                 <ul class="dropdown-menu background-color-purple bg-primary">
                     
-                    <li><a class="dropdown-item text-white" href="/calculator/mortgage">Mortgage Calculator</a></li>
+                    <li><a class="dropdown-item text-white" href="/calculators/mortgage">Mortgage Calculator</a></li>
                     <li><a class="dropdown-item text-white" href="#">Mortgage/loan Payoff Calculator</a></li>
                     <li><a class="dropdown-item text-white" href="#">Loan Calculator</a></li>
                     <li><a class="dropdown-item text-white" href="#">Income Tax</a></li>
@@ -38,7 +38,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link text-white" aria-current="page" href="/all-calculators">All Calculators</a>
+                <a class="nav-link text-white" aria-current="page" href="/calculators">All Calculators</a>
             </li>
         </ul>
         <form class="d-flex" role="search" id="navbar-search-component">
