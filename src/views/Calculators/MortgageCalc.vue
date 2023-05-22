@@ -249,6 +249,7 @@
         },
         mounted() {
             console.log("Vue 3 mounted");
+            document.title = "World of Calculators - Mortgage Calculator";
         },
         
     };
@@ -363,11 +364,11 @@
 
         </div>
 
-        <div class="text-center my-3">
-            <button type="button" id="calculate-button" class="btn btn-primary mx-auto" @click="calculateMortgage">
+        <div class="text-center my-3 mx-auto grid gap-3">
+            <button type="button" id="calculate-button" class="btn btn-secondary me-4" @click="calculateMortgage">
                 Calculate
             </button>
-            <button type="button" id="reset-button" class="btn btn-secondary mx-auto " @click="resetForm">Reset</button>
+            <button type="button" id="reset-button" class="btn btn-danger " @click="resetForm">Reset</button>
         </div>
 
 

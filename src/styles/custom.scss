@@ -3,13 +3,29 @@
 
 
 $primary: #9d4edd;
+$secondary: #4361ee;
 $primary-emphasis: #7678ed;
+$secondary-emphasis: #00509d;
+$success: #6a994e;
+$success-emphasis: #386641;
 $navbar-bg: $primary;
 
 .bg-primary {
     background-color: $primary !important;
 }
-
+.btn-primary {
+    background-color: $primary !important;
+}
+.btn-primary:hover {
+    background-color: $primary-emphasis !important;
+}
+.btn-secondary {
+    background-color: $secondary !important;
+    border: $secondary-emphasis;
+}
+.btn-secondary:hover {
+    background-color: $secondary-emphasis !important;
+}
 .text-primary {
     color: $primary !important;
 }

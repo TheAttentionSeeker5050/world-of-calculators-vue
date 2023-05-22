@@ -27,7 +27,7 @@
                 <ul class="dropdown-menu background-color-purple bg-primary">
                     
                     <li><a class="dropdown-item text-white" href="/calculators/mortgage">Mortgage Calculator</a></li>
-                    <li><a class="dropdown-item text-white" href="#">Mortgage/loan Payoff Calculator</a></li>
+                    <li><a class="dropdown-item text-white" href="/calculators/loan-payoff">Mortgage/loan Payoff Calculator</a></li>
                     <li><a class="dropdown-item text-white" href="#">Loan Calculator</a></li>
                     <li><a class="dropdown-item text-white" href="#">Income Tax</a></li>
                     <li><a class="dropdown-item text-white" href="#">Retirement Calculator</a></li>

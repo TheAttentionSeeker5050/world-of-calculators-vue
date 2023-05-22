@@ -1,3 +1,10 @@
+<script >
+    export default {
+        mounted() {
+            document.title = "World of Calculators - About";
+        }
+    }
+</script>
 <template>
   <div id="main-page-wrapper" class="container-sm">
 
