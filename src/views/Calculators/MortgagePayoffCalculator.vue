@@ -1,20 +1,36 @@
 <script >
+    import {genericAmortizationTable} from "../../components/commonFunctions/loanPayments"
     export default {
         data() {
             return {
-                // form variables
+                // form props
                 originalLoanAmount: 400000,
                 originalLoanTerm: 30,
                 anualInterestRate: 6,
                 remainingTermYears: 25,
                 remainingTermMonths: 0,
+                repaymentOption:"with_extra_payments",
 
-                // return variables
+                // return props
 
-                // list objects
+                // list objects props
 
-                // chart variables
+                // chart props
+
+                // state props
+                displayResults: false,
             };
+        },
+        methods: {
+            calculate() {
+                console.log(genericAmortizationTable(this.anualInterestRate/(12*100), 1918, 320000, 30*12));
+
+
+                this.displayResults = true;
+            },
+            resetResults() {
+                Object.assign(this.$data, this.$options.data());
+            },
         },
         mounted() {
             document.title = "World of Calculators - Mortgage Payoff Calculator";
@@ -69,50 +85,65 @@
             
             <div class="row my-2">
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="repaymentOption" id="repaymentOption__PaybackAltogether">
+                    <input class="form-check-input" type="radio" name="repaymentOption" id="repaymentOption__PaybackAltogether" value="payback_altogether" v-model="repaymentOption">
                     <label class="form-check-label" for="repaymentOption__PaybackAltogether">
                         Payback altogether
                     </label>
                 </div>
 
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="repaymentOption" id="repaymentOption__WithExtraPayments">
+                    <input class="form-check-input" type="radio" name="repaymentOption" id="repaymentOption__WithExtraPayments" value="with_extra_payments" v-model="repaymentOption">
                     <label class="form-check-label" for="repaymentOption__WithExtraPayments">
                         Repayment with extra payments
                     </label>
 
                     <div class="input-group mb-3 col-md my-3">
                         <input type="number" class="form-control" placeholder="per month" >
-                        <input type="number" class="form-control" placeholder="per year" >    
+                        <span class="input-group-text" >Per month</span>
+                        <input type="number" class="form-control" placeholder="per year" >
+                        <span class="input-group-text" >Per year</span>
                         <input type="number" class="form-control" placeholder="one time" >    
+                        <span class="input-group-text" >One time</span>
                     </div>
                 </div>
 
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="repaymentOption" id="repaymentOption__BiweeklyPayments">
+                    <input class="form-check-input" type="radio" name="repaymentOption" id="repaymentOption__BiweeklyPayments" value="biweekly_payments" v-model="repaymentOption">
                     <label class="form-check-label" for="repaymentOption__BiweeklyPayments">
                         Biweekly repayment
                     </label>
                 </div>
 
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="repaymentOption" id="repaymentOption__BiweeklyPayments">
-                    <label class="form-check-label" for="repaymentOption__BiweeklyPayments">
+                    <input class="form-check-input" type="radio" name="repaymentOption" id="repaymentOption__NormalPayment" value="normal_payment" v-model="repaymentOption">
+                    <label class="form-check-label" for="repaymentOption__NormalPayment">
                         Normal repayment
                     </label>
                 </div>
             </div>
             
             <div class="text-center my-3 mx-auto grid gap-3">
-                <button type="button" class="btn btn-secondary me-4" >
+                <button type="button" class="btn btn-secondary me-4" @click="calculate">
                     Calculate
                 </button>
-                <button type="button"  class="btn btn-danger  " >Reset</button>
+                <button type="button"  class="btn btn-danger" @click="resetResults" >Reset</button>
             </div>
 
-            
-
-
         </form>
+
+        <div id="results-container" v-if="displayResults === true" class="container-sm my-5">
+            <div id="payoff-container" class="container-sm mb-3">
+                <h2>Payoff paid in... years, months</h2>
+            </div>
+
+            <div id="interest-savings-summary" class="container-sm mb-3">
+                <h2>Summary of money and mortgage terms saved</h2>
+            </div>
+
+            <div id="mortgage-cost-payoff-comparison" class="container-sm mb-3">
+                <h2>Comparing original vs with payoff cost savings</h2>
+            </div>
+        </div>
+
     </div>
 </template>
