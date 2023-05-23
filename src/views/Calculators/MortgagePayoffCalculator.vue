@@ -1,5 +1,10 @@
 <script >
-    import {genericAmortizationTable} from "../../components/commonFunctions/loanPayments"
+
+    import {currencyFormat} from "../../components/commonFunctions/filters";
+    import {calcLoanRecurrentPayment, splitInterestRate, genericAmortizationTable, findRemainingDebtInAmortizationTableByTerm} from "../../components/commonFunctions/loanPayments";
+    import {calcAssetMaintenanceCost, calcOverallAssetCost, calcAssetMaintenanceCostTotal} from "../../components/commonFunctions/commonAssetCosts";
+    import  ChartComponent  from "../../components/ChartComponent.vue"
+    
     export default {
         data() {
             return {
@@ -12,6 +17,12 @@
                 repaymentOption:"with_extra_payments",
 
                 // return props
+                monthlyMortgagePayment: null,
+                monthlyInterestRate: null,
+                amortizationTable: [],
+                remainingLoanBalance: null,
+
+
 
                 // list objects props
 
@@ -23,7 +34,23 @@
         },
         methods: {
             calculate() {
-                console.log(genericAmortizationTable(this.anualInterestRate/(12*100), 1918, 320000, 30*12));
+
+                // -------------------------- finding the remaining balance
+
+                // calculate interest rate
+                this.monthlyInterestRate = splitInterestRate(this.anualInterestRate, 12);
+
+                // calculate monthly payment
+                this.monthlyMortgagePayment = calcLoanRecurrentPayment(this.originalLoanAmount, this.monthlyInterestRate, this.originalLoanTerm*12);
+
+                // calculate amortization table
+                this.amortizationTable = genericAmortizationTable(this.monthlyInterestRate, this.monthlyMortgagePayment, this.originalLoanAmount, this.originalLoanTerm*12);
+
+                // find the remaining balance using the amortization table
+                this.remainingLoanBalance = findRemainingDebtInAmortizationTableByTerm(this.remainingTermMonths, this.remainingTermYears, this.amortizationTable);
+
+                
+
 
 
                 this.displayResults = true;
@@ -40,6 +67,7 @@
 <template>
     <div id="main-page-wrapper" class="my-5 container-sm">
         <h1 class="text-center my-4">Mortgage Payoff Calculator</h1>
+        <h2 class="text-center my-4">If You Know the Remaining Loan Term</h2>
 
         <form id="calculator-form" class="container-fluid ">
             <div class="row">
