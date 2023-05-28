@@ -35,6 +35,8 @@
                 originalRemainingInterestPayments: null,
                 originalTotalMortgagePayments: null,
                 originalTotalInterestPayments: null,
+                alternativeRemainingInterestPayments: null,
+                alternativeRemainingMortgagePayments: null,
                 alternateRemainingYears: null,
                 alternateRemainingMonths: null,
                 repaymentSummary: null,
@@ -71,8 +73,8 @@
                 // get the payment variables
                 this.totalPaymentsUntilNow = this.getTotalPaymentsUntilNow();
                 this.totalInterestUntilNow = this.getTotalInterestUntilNow();
-                this.originalRemainingPayments = this.getOriginalRemainingPayments();
-                this.originalRemainingInterestPayments = this.getOriginalRemainingInterest();
+                this.originalRemainingPayments = this.getRemainingMortgagePayments(this.amortizationTable);
+                this.originalRemainingInterestPayments = this.getRemainingInterestPayments(this.amortizationTable);
                 this.originalTotalMortgagePayments = this.getOriginalTotalMortgagePayments();
                 this.originalTotalInterestPayments = this.getOriginalTotalInterestPayments();
 
@@ -91,7 +93,12 @@
                     this.alternateRemainingYears = Math.floor(alternateRemainingTerms/12);
                     this.alternateRemainingMonths = alternateRemainingTerms % 12;
 
-                    console.log(this.alternativeAmortizationTable)
+                    this.alternativeRemainingInterestPayments = this.getRemainingInterestPayments(this.alternativeAmortizationTable);
+                    this.alternativeRemainingMortgagePayments = this.getRemainingMortgagePayments(this.alternativeAmortizationTable);
+                    console.log("alternative interest", this.alternativeRemainingInterestPayments);
+                    console.log("original remaining interest", this.originalRemainingInterestPayments);
+                    
+                    // console.log(this.alternativeAmortizationTable)
                     // add summary paragraph here
                     this.repaymentSummary = this.returnRepaymentBalanceSummaryParagraph();
                     
@@ -124,15 +131,15 @@
                 return this.amortizationTable.filter(row => row.term <= this.currentPaymentIndex).reduce((a, b) => a + b.interest, 0);
                 
             },
-            getOriginalRemainingPayments() {
+            getRemainingMortgagePayments(amortizationTable) {
                 // returns the original mortgage payments 
-                return this.amortizationTable.filter(row => row.term > this.currentPaymentIndex).reduce((a, b) => a + b.principal + b.interest, 0);
+                return amortizationTable.filter(row => row.term > this.currentPaymentIndex).reduce((a, b) => a + b.principal + b.interest, 0);
                 
             },
-            getOriginalRemainingInterest() {
+            getRemainingInterestPayments(amortizationTable) {
                 // returns the original interest payments
                 // console.log(this.amortizationTable)
-                return this.amortizationTable.filter(row => row.term > this.currentPaymentIndex).reduce((a, b) => a + b.interest, 0);
+                return amortizationTable.filter(row => row.term > this.currentPaymentIndex).reduce((a, b) => a + b.interest, 0);
 
             },
             getOriginalTotalMortgagePayments() {
@@ -192,7 +199,7 @@
 
                     returnStr += " earlier."
                 }
-                returnStr += `This results in savings of $169,356 in interest.`
+                returnStr += `This results in savings of ${this.formatCurrencyValues(this.originalRemainingInterestPayments - this.alternativeRemainingInterestPayments)} in interest.`
                 
                 return returnStr;
             }
