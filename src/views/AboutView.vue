@@ -19,7 +19,7 @@
 
     <h2>Contact Me</h2>
     <p class="">
-        You can check my portfolio website <a href="https://nicolas-castellano.com">Here</a>, as well as my <a href="https://github.com/TheAttentionSeeker5050">GitHub Profile</a>. If you would like to contact me, please reach out to me to my <a href="https://www.linkedin.com/in/nicolas-castellano-dev/">LinkedIn</a> account.
+        You can check my portfolio website <a class="fw-semibold text-primary" href="https://nicolas-castellano.com">Here</a>, as well as my <a class="fw-semibold text-primary" href="https://github.com/TheAttentionSeeker5050">GitHub Profile</a>. If you would like to contact me, please reach out to me to my <a class="fw-semibold text-primary" href="https://www.linkedin.com/in/nicolas-castellano-dev/">LinkedIn</a> account.
     </p>
 
   </div>

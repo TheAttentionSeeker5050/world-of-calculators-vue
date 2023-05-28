@@ -1,8 +1,10 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import CalculatorsIndex from "../views/CalculatorsIndex.vue"
-import MortgageCalc from "../views/Calculators/MortgageCalc.vue"
-import MortgagePayoffCalculator from "../views/Calculators/MortgagePayoffCalculator.vue"
+import { createRouter, createWebHistory } from 'vue-router';
+import HomeView from '../views/HomeView.vue';
+import CalculatorsIndex from "../views/CalculatorsIndex.vue";
+import MortgageCalc from "../views/Calculators/MortgageCalc.vue";
+import MortgagePayoffCalculator from "../views/Calculators/MortgagePayoffCalculator.vue";
+import PageNotFound from "../views/PageNotFound.vue";
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -41,11 +43,14 @@ const router = createRouter({
         
       ],
     },
-    // {
-    //   path: "/calculators/mortgage",
-    //       name: "mortgageCalculator",
-    //       component: MortgageCalc,
-    // },
+
+
+
+    // on error pages
+    {
+      path: "/:catchAll(.*)",
+      component: PageNotFound
+    },
 
   ]
 })

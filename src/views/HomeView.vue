@@ -22,22 +22,10 @@
         </p>
 
         <p>
-            Some of our popular calculators include:
+            Check out all our calculators <a class="fw-semibold text-primary" href="/calculators"> here </a>
         </p>
 
-        <h2>Financial Calculators</h2>
-        <ul>
-            <li><a href="/calculator/mortgage">Mortgage Calculator</a></li>
-            <li><a href="">Loan Calculator</a></li>
-            <li><a href="">Debt Amortization Calculator</a></li>
-        </ul>
-
-        <h2>Math & Physics Calculators</h2>
-        <ul>
-            <li><a href="">Calculator 1</a></li>
-            <li><a href="">Calculator 2</a></li>
-            <li><a href="">Calculator 3</a></li>
-        </ul>
+        
 
     </div>
 </template>

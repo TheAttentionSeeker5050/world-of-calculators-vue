@@ -1,5 +1,4 @@
-// @import '~bootstrap/scss/bootstrap.scss';
-// @import '~bootstrap/scss/bootstrap';
+
 
 
 $primary: #9d4edd;
@@ -31,4 +30,11 @@ $navbar-bg: $primary;
 }
 .text-primary:hover {
     color: $primary-emphasis !important;
+}
+
+.text-secondary {
+    color: $secondary !important;
+}
+.text-secondary:hover {
+    color: $secondary-emphasis !important;
 }
