@@ -142,7 +142,7 @@ export function findRemainingDebtInAmortizationTableByTerm(remainingMonths, rema
     // return value
     return remainingBalance;
 
-}
+};
 
 export function findCurrentPaymentIndexInAmortizationTable(remainingMonths, remainingYears, amortizationTable) {
     // returns the remaining balance based on the amortization table
@@ -155,5 +155,5 @@ export function findCurrentPaymentIndexInAmortizationTable(remainingMonths, rema
 
     // return value
     return currentIndexInAmortizationTable;
-}
+};
 
