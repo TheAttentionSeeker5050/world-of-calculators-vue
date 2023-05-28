@@ -77,7 +77,9 @@ export function amortizationTableWithExtraPayment(interestRate, mortgagePaymentM
         
         // so we will compute the interest and the principal for all the 12 months of a year
         let currentMonthInterest = endingBalance*interestRate;
-        let currentMonthPrincipal = mortgagePaymentMontly - currentMonthInterest + extraPaymentMontly;
+
+        // limit the current month principal to nothing more than the current balance
+        let currentMonthPrincipal = mortgagePaymentMontly - currentMonthInterest <= endingBalance ? mortgagePaymentMontly - currentMonthInterest + extraPaymentMontly : endingBalance;
 
         // substract normal principal payment to ending balance and extra monthly repayments
         if (currentMonthPrincipal <= endingBalance) {
@@ -98,7 +100,7 @@ export function amortizationTableWithExtraPayment(interestRate, mortgagePaymentM
             endingBalance -=  extraPaymentAnual;
         } else if (term % 12 == 0 && extraPaymentAnual > endingBalance) {
             // if end of year and anual payment bigger than balance, only add the remaining to the principal payment for current month
-            currentMonthPrincipal += extraPaymentAnual;
+            currentMonthPrincipal += endingBalance;
             // ending balance is zero
             endingBalance = 0;
         }

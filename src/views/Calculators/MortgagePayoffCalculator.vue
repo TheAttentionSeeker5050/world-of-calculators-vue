@@ -92,6 +92,8 @@
 
                     // get new amortization table
                     this.alternativeAmortizationTable = amortizationTableWithExtraPayment(this.monthlyInterestRate, this.monthlyMortgagePayment, this.remainingLoanBalance, remainingPayments, this.extraRepaymentPerYear, this.extraRepaymentPerMonth);
+
+                    console.log(this.alternativeAmortizationTable)
                     
                     let alternateRemainingTerms = this.alternativeAmortizationTable.length;
                     this.alternateRemainingYears = Math.floor(alternateRemainingTerms/12);
@@ -117,8 +119,6 @@
                     // add summary paragraph here
                     this.repaymentSummary = this.returnRepaymentBalanceSummaryParagraph();
                     
-
-
                     
                 } 
 
@@ -411,15 +411,7 @@
                             <th scope="col">Time savings <span v-html="remainingYearsSavings"></span> years and <span v-html="remainingMonthsSavings"></span> months</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <!-- leave this for later -->
-                                <td>payoff graph, could also be a card</td>
-                                <td>payoff graph, could also be a card</td>
-                            </tr>
-
-                        </tbody>
-
+                        
                     </table>
                 </div>
 
