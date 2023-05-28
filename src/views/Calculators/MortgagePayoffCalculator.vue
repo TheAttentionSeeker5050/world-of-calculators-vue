@@ -91,11 +91,14 @@
                     this.alternateRemainingYears = Math.floor(alternateRemainingTerms/12);
                     this.alternateRemainingMonths = alternateRemainingTerms % 12;
 
+                    console.log(this.alternativeAmortizationTable)
                     // add summary paragraph here
-                    this.repaymentSummary = "add summary paragraph here";
-                    // this.repaymentSummary = "The remaining balance is $372,217.43. By paying extra $500.00 per month and $5,000.00 annually at the year end and $500.00 starting now, the loan will be paid off in 14 years. It is 11 years earlier. This results in savings of $169,356 in interest.";
+                    this.repaymentSummary = this.returnRepaymentBalanceSummaryParagraph();
+                    
 
 
+                    
+                } else if (this.repaymentOption == "") {
                     
                 }
 
@@ -128,6 +131,7 @@
             },
             getOriginalRemainingInterest() {
                 // returns the original interest payments
+                // console.log(this.amortizationTable)
                 return this.amortizationTable.filter(row => row.term > this.currentPaymentIndex).reduce((a, b) => a + b.interest, 0);
 
             },
@@ -141,6 +145,57 @@
                 return this.amortizationTable.reduce((a, b) => a + b.interest, 0);
 
             },
+            returnRepaymentBalanceSummaryParagraph() {
+                let returnStr =  `The remaining balance is ${this.formatCurrencyValues(this.remainingLoanBalance)}. By paying extra `;
+                if (this.extraRepaymentPerMonth > 0) {
+                    returnStr += `${this.formatCurrencyValues(this.extraRepaymentPerMonth)} per month`;
+
+                }
+
+                if (this.extraRepaymentPerMonth>0 && this.extraRepaymentPerYear) {
+                    returnStr += " and ";
+                }
+
+                if (this.extraRepaymentPerYear>0) {
+                    returnStr += ` ${this.formatCurrencyValues(this.extraRepaymentPerYear)} annually at the year end`;
+                }
+
+                if (this.extraRepaymentPerYear>0 && this.extraRepaymentPerOneTime) {
+                    returnStr += " and ";
+                } 
+
+                if (this.extraRepaymentPerOneTime > 0) {
+                    returnStr += `${this.formatCurrencyValues(this.extraRepaymentPerOneTime)} starting now`
+                }
+
+                returnStr += `, the loan will be paid off in `;
+
+                if (this.alternateRemainingYears>0) {
+                    returnStr += `${this.alternateRemainingYears} years`;
+                }
+
+                if (this.alternateRemainingMonths>0) {
+                    returnStr += ` and ${this.alternateRemainingMonths} months`
+                }
+
+                if (this.remainingTermYears-this.alternateRemainingYears>0 || this.remainingTermMonths-this.alternateRemainingMonths>0) {
+
+                    returnStr += `. It is `
+                    
+                    if (this.remainingTermYears-this.alternateRemainingYears>0) {
+                        returnStr += `${this.remainingTermYears-this.alternateRemainingYears} years`
+                    }
+
+                    if (this.remainingTermMonths-this.alternateRemainingMonths>0) {
+                        returnStr += ` and ${this.remainingTermMonths-this.alternateRemainingMonths} months`
+                    }
+
+                    returnStr += " earlier."
+                }
+                returnStr += `This results in savings of $169,356 in interest.`
+                
+                return returnStr;
+            }
 
 
 
@@ -322,7 +377,7 @@
                 </div>
 
                 <div class="row my-3">
-                    <!-- <p>The remaining balance is <span v-html="formatCurrencyValues(remainingLoanBalance)"></span>.By paying extra <span v-if="extraRepaymentPerMonth>0" v-html="formatCurrencyValues(extraRepaymentPerMonth)+ ' per month'"></span><span v-if="extraRepaymentPerMonth+extraRepaymentPerYear>0">,</span> <span v-html="formatCurrencyValues(extraRepaymentPerYear) + ' annually at the year end'"></span> <span v-html="'and ' + formatCurrencyValues(extraRepaymentPerOneTime) + ' starting now'"></span>, the loan will be paid off in <span v-if="alternateRemainingMonths>0" v-html="alternateRemainingMonths + ' years'"></span> <span v-if="alternateRemainingMonths>0 && alternateRemainingYears>0" v-html="' and '"></span><span v-if="alternateRemainingYears>0" v-html="alternateRemainingYears + ' years'"></span>. It is 11 years earlier. This results in savings of $169,356 in interest.</p> -->
+                    
                     <p v-html="repaymentSummary"></p>
                 </div>
 
