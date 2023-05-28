@@ -2,7 +2,7 @@
 
     import {currencyFormat} from "../../components/commonFunctions/filters";
     import {calcLoanRecurrentPayment, splitInterestRate, genericAmortizationTable, findRemainingDebtInAmortizationTableByTerm, findCurrentPaymentIndexInAmortizationTable, amortizationTableWithExtraPayment} from "../../components/commonFunctions/loanPayments";
-    import {calcAssetMaintenanceCost, calcOverallAssetCost, calcAssetMaintenanceCostTotal} from "../../components/commonFunctions/commonAssetCosts";
+    // import {calcAssetMaintenanceCost, calcOverallAssetCost, calcAssetMaintenanceCostTotal} from "../../components/commonFunctions/commonAssetCosts";
     import {sumReduceArray} from "../../components/commonFunctions/arrayFunctions";
     import  ChartComponent  from "../../components/ChartComponent.vue"
     
