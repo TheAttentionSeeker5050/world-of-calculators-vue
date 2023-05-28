@@ -39,6 +39,10 @@
                 alternativeRemainingMortgagePayments: null,
                 alternateRemainingYears: null,
                 alternateRemainingMonths: null,
+                remainingMonthsSavings: null,
+                remainingYearsSavings:null,
+                interestPaymentSavings: null,
+                
                 repaymentSummary: null,
 
 
@@ -75,8 +79,8 @@
                 this.totalInterestUntilNow = this.getTotalInterestUntilNow();
                 this.originalRemainingPayments = this.getRemainingMortgagePayments(this.amortizationTable);
                 this.originalRemainingInterestPayments = this.getRemainingInterestPayments(this.amortizationTable);
-                this.originalTotalMortgagePayments = this.getOriginalTotalMortgagePayments();
-                this.originalTotalInterestPayments = this.getOriginalTotalInterestPayments();
+                this.originalTotalMortgagePayments = this.getTotalMortgagePayments(this.amortizationTable);
+                this.originalTotalInterestPayments = this.getTotalInterestPayments(this.amortizationTable);
 
                 // if payoff with extra repayments
                 if (this.repaymentOption == "with_extra_payments") {
@@ -92,22 +96,32 @@
                     let alternateRemainingTerms = this.alternativeAmortizationTable.length;
                     this.alternateRemainingYears = Math.floor(alternateRemainingTerms/12);
                     this.alternateRemainingMonths = alternateRemainingTerms % 12;
+                    // console.log("alternative remaining months",this.alternateRemainingMonths)
+                    // console.log("alternative remaining years",this.alternateRemainingYears)
 
-                    this.alternativeRemainingInterestPayments = this.getRemainingInterestPayments(this.alternativeAmortizationTable);
-                    this.alternativeRemainingMortgagePayments = this.getRemainingMortgagePayments(this.alternativeAmortizationTable);
-                    console.log("alternative interest", this.alternativeRemainingInterestPayments);
-                    console.log("original remaining interest", this.originalRemainingInterestPayments);
                     
-                    // console.log(this.alternativeAmortizationTable)
+                    this.alternativeRemainingInterestPayments = this.getTotalInterestPayments(this.alternativeAmortizationTable);
+                    this.alternativeRemainingMortgagePayments = this.getTotalMortgagePayments(this.alternativeAmortizationTable);
+
+                    console.log("alternative interest payment remaining",this.alternativeRemainingInterestPayments);
+                    console.log("original interest payment remaining",this.originalRemainingInterestPayments);
+                    // the time savings 
+                    const termSavings = remainingPayments - alternateRemainingTerms;
+
+                    // calculate month savings
+                    this.remainingYearsSavings = Math.floor(termSavings/12);
+                    this.remainingMonthsSavings = termSavings % 12;
+
+                    // calculate interest savings
+                    this.interestPaymentSavings = this.originalRemainingInterestPayments - this.alternativeRemainingInterestPayments;
+
                     // add summary paragraph here
                     this.repaymentSummary = this.returnRepaymentBalanceSummaryParagraph();
                     
 
 
                     
-                } else if (this.repaymentOption == "") {
-                    
-                }
+                } 
 
 
                 this.displayResults = true;
@@ -140,16 +154,16 @@
                 // returns the original interest payments
                 // console.log(this.amortizationTable)
                 return amortizationTable.filter(row => row.term > this.currentPaymentIndex).reduce((a, b) => a + b.interest, 0);
+            },
+
+            getTotalMortgagePayments(amortizationTable) {
+                // returns the original total mortgage payments
+                return amortizationTable.reduce((a, b) => a + b.principal + b.interest, 0);
 
             },
-            getOriginalTotalMortgagePayments() {
+            getTotalInterestPayments(amortizationTable) {
                 // returns the original total mortgage payments
-                return this.amortizationTable.reduce((a, b) => a + b.principal + b.interest, 0);
-
-            },
-            getOriginalTotalInterestPayments() {
-                // returns the original total mortgage payments
-                return this.amortizationTable.reduce((a, b) => a + b.interest, 0);
+                return amortizationTable.reduce((a, b) => a + b.interest, 0);
 
             },
             returnRepaymentBalanceSummaryParagraph() {
@@ -394,8 +408,8 @@
                         <thead class="bg-primary text-white">
                         <!-- <thead class="table-dark"> -->
                             <tr>
-                            <th scope="col">Interest savings$122,306</th>
-                            <th scope="col">Time savings 7 years and 9 months</th>
+                            <th scope="col">Interest savings <span v-html="formatCurrencyValues(interestPaymentSavings)"></span></th>
+                            <th scope="col">Time savings <span v-html="remainingYearsSavings"></span> years and <span v-html="remainingMonthsSavings"></span> months</th>
                             </tr>
                         </thead>
                         <tbody>
