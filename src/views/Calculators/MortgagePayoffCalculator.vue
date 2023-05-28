@@ -296,7 +296,7 @@
                     </div>
                 </div>
 
-                <div class="form-check">
+                <!-- <div class="form-check">
                     <input class="form-check-input" type="radio" name="repaymentOption" id="repaymentOption__BiweeklyPayments" value="biweekly_payments" v-model="repaymentOption" @click="onRadioClick">
                     <label class="form-check-label" for="repaymentOption__BiweeklyPayments">
                         Biweekly repayment
@@ -308,7 +308,7 @@
                     <label class="form-check-label" for="repaymentOption__NormalPayment">
                         Normal repayment
                     </label>
-                </div>
+                </div> -->
             </div>
             
             <div class="text-center my-3 mx-auto grid gap-3">
