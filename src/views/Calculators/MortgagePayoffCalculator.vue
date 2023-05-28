@@ -99,12 +99,11 @@
                     // console.log("alternative remaining months",this.alternateRemainingMonths)
                     // console.log("alternative remaining years",this.alternateRemainingYears)
 
-                    
+                    // get the alternative remaining interest payments
                     this.alternativeRemainingInterestPayments = this.getTotalInterestPayments(this.alternativeAmortizationTable);
                     this.alternativeRemainingMortgagePayments = this.getTotalMortgagePayments(this.alternativeAmortizationTable);
 
-                    console.log("alternative interest payment remaining",this.alternativeRemainingInterestPayments);
-                    console.log("original interest payment remaining",this.originalRemainingInterestPayments);
+                    
                     // the time savings 
                     const termSavings = remainingPayments - alternateRemainingTerms;
 
@@ -199,16 +198,16 @@
                     returnStr += ` and ${this.alternateRemainingMonths} months`
                 }
 
-                if (this.remainingTermYears-this.alternateRemainingYears>0 || this.remainingTermMonths-this.alternateRemainingMonths>0) {
+                if (this.remainingYearsSavings>0 || this.remainingMonthsSavings>0) {
 
                     returnStr += `. It is `
                     
-                    if (this.remainingTermYears-this.alternateRemainingYears>0) {
-                        returnStr += `${this.remainingTermYears-this.alternateRemainingYears} years`
+                    if (this.remainingYearsSavings>0) {
+                        returnStr += `${this.remainingYearsSavings} years`
                     }
 
-                    if (this.remainingTermMonths-this.alternateRemainingMonths>0) {
-                        returnStr += ` and ${this.remainingTermMonths-this.alternateRemainingMonths} months`
+                    if (this.remainingMonthsSavings>0) {
+                        returnStr += ` and ${this.remainingMonthsSavings} months`
                     }
 
                     returnStr += " earlier."
@@ -414,6 +413,7 @@
                         </thead>
                         <tbody>
                             <tr>
+                                <!-- leave this for later -->
                                 <td>payoff graph, could also be a card</td>
                                 <td>payoff graph, could also be a card</td>
                             </tr>
@@ -434,40 +434,40 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
+                            <!-- <tr>
                                 <td>Monthly pay</td>
                                 <td>$2,398.20</td>
                                 <td>$2,898.20</td>
-                            </tr>
+                            </tr> -->
 
                             <tr>
                                 <td>Total payments</td>
-                                <td>$2,398.20</td>
-                                <td>$2,898.20</td>
+                                <td v-html="formatCurrencyValues(originalTotalMortgagePayments)"></td>
+                                <td v-html="formatCurrencyValues(totalPaymentsUntilNow+alternativeRemainingMortgagePayments)"></td>
                             </tr>
 
                             <tr>
                                 <td>Total interest</td>
-                                <td>$2,398.20</td>
-                                <td>$2,898.20</td>
+                                <td v-html="formatCurrencyValues(originalTotalInterestPayments)"></td>
+                                <td v-html="formatCurrencyValues(totalInterestUntilNow+alternativeRemainingInterestPayments)"></td>
                             </tr>
 
                             <tr>
                                 <td>Remaining payments</td>
-                                <td>$2,398.20</td>
-                                <td>$2,898.20</td>
+                                <td v-html="formatCurrencyValues(originalRemainingPayments)"></td>
+                                <td v-html="formatCurrencyValues(alternativeRemainingMortgagePayments)"></td>
                             </tr>
 
                             <tr>
                                 <td>Remaining interest</td>
-                                <td>$2,398.20</td>
-                                <td>$2,898.20</td>
+                                <td v-html="formatCurrencyValues(originalRemainingInterestPayments)"></td>
+                                <td v-html="formatCurrencyValues(alternativeRemainingInterestPayments)"></td>
                             </tr>
 
                             <tr>
                                 <td>Payoff in</td>
-                                <td>$2,398.20</td>
-                                <td>$2,898.20</td>
+                                <td ><span v-html="remainingTermYears"></span> years, <span v-html="remainingTermMonths"></span> months</td>
+                                <td><span v-html="alternateRemainingYears"></span> years, <span v-html="alternateRemainingMonths"></span> months</td>
                             </tr>
 
                         </tbody>
