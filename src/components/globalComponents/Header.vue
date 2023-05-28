@@ -23,16 +23,12 @@
             
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Calculators </a>
+                Featured Calculators </a>
                 <ul class="dropdown-menu background-color-purple bg-primary">
                     
                     <li><a class="dropdown-item text-white" href="/calculators/mortgage">Mortgage Calculator</a></li>
                     <li><a class="dropdown-item text-white" href="/calculators/loan-payoff">Mortgage/loan Payoff Calculator</a></li>
-                    <li><a class="dropdown-item text-white" href="#">Loan Calculator</a></li>
-                    <li><a class="dropdown-item text-white" href="#">Income Tax</a></li>
-                    <li><a class="dropdown-item text-white" href="#">Retirement Calculator</a></li>
-                    <li><a class="dropdown-item text-white" href="#">Compound Interest Calculator</a></li>
-                    <li><a class="dropdown-item text-white" href="#">Inflation & Real Future Value Calculator</a></li>
+                    <!-- <li><a class="dropdown-item text-white disabled" href="#">Loan Calculator</a></li> -->
                     
                 </ul>
             </li>

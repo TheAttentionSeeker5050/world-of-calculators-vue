@@ -6,7 +6,7 @@
     }
 </script>
 <template>
-    <div id="main-page-wrapper" class="container-sm my-4">
+    <div id="main-page-wrapper" class="container-sm my-5">
 
         <h1 class="text-center my-4">
             All Calculators
@@ -39,6 +39,11 @@
             <li><a href="">Calculator 2 (pending)</a></li>
             <li><a href="">Calculator 3 (pending)</a></li>
         </ul>
-
+        
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
     </div>
 </template>
