@@ -6,6 +6,7 @@ import Footer from './components/globalComponents/Footer.vue';
 
 import './styles/custom.scss';
 
+
 </script>
 
 <template>
