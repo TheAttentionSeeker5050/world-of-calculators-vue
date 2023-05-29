@@ -11,7 +11,7 @@ export default defineConfig({
     vue(), 
     vueJsx()
   ],
-  server: 80,
+  // server: 80,
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
