@@ -4,6 +4,7 @@ import CalculatorsIndex from "../views/CalculatorsIndex.vue";
 import MortgageCalc from "../views/Calculators/MortgageCalc.vue";
 import MortgagePayoffCalculator from "../views/Calculators/MortgagePayoffCalculator.vue";
 import PageNotFound from "../views/PageNotFound.vue";
+import LoanCalculator from "../views/Calculators/LoanCalculator.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -40,6 +41,11 @@ const router = createRouter({
           name: "loanPayoffCalculator",
           component: MortgagePayoffCalculator,
         },
+        {
+          path: "loan-calculator",
+          name: "loanCalculator",
+          component: LoanCalculator,
+        }
         
       ],
     },
