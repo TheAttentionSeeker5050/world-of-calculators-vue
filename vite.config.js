@@ -12,6 +12,7 @@ export default defineConfig({
     vueJsx()
   ],
   server: 80,
+  base: '/world-of-calculators-vue/',
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
