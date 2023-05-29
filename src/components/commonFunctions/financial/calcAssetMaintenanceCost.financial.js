@@ -13,7 +13,7 @@ export default function calcAssetMaintenanceCost(assetPrice, cost, costUnit) {
         return result;
         
     } else {
-        console.error("invalid property tax units, check your calculator form input");
+        // console.error("invalid property tax units, check your calculator form input");
         return NaN;
     }
 };
