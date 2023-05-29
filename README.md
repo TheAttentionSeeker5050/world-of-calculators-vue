@@ -55,3 +55,4 @@ npm run test:e2e
 ```sh
 npm run lint
 ```
+![build](https://github.com/TheAttentionSeeker5050/world-of-calculators-vue/actions/workflows/build.yml/badge.svg)
