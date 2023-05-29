@@ -4,6 +4,24 @@ export default function calcAssetMaintenanceCost(assetPrice, cost, costUnit) {
     // the cost unit can be either 'dollar' or 'percent', any other costUnit will return NaN
     // In case that the user wants a yearly cost, they multiply the return value by 12
     let result;
+
+    if (assetPrice===null || cost===null || costUnit===null) {
+        return NaN;
+    }
+
+    if (assetPrice===undefined || cost===undefined || costUnit===undefined) {
+        return NaN;
+    }
+
+    if (assetPrice<0 || cost<0) {
+        return NaN;
+    }
+
+    if (typeof assetPrice != "number" || typeof cost != "number" || typeof costUnit != "string") {
+        return NaN;
+    }
+
+
     if (costUnit==="percent") {
         result = assetPrice*cost/(100*12);
         return result;
