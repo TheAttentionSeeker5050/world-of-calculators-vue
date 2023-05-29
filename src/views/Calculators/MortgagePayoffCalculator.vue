@@ -1,10 +1,16 @@
 <script >
 
-    import {currencyFormat} from "../../components/commonFunctions/filters";
-    import {calcLoanRecurrentPayment, splitInterestRate, genericAmortizationTable, findRemainingDebtInAmortizationTableByTerm, findCurrentPaymentIndexInAmortizationTable, amortizationTableWithExtraPayment} from "../../components/commonFunctions/loanPayments";
-    // import {calcAssetMaintenanceCost, calcOverallAssetCost, calcAssetMaintenanceCostTotal} from "../../components/commonFunctions/commonAssetCosts";
-    import {sumReduceArray} from "../../components/commonFunctions/arrayFunctions";
-    import  ChartComponent  from "../../components/ChartComponent.vue"
+    // import {findRemainingDebtInAmortizationTableByTerm} from "../../components/commonFunctions/loanPayments";
+    
+    // import  ChartComponent  from "../../components/ChartComponent.vue"
+
+    import currencyFormat from "../../components/commonFunctions/dataFilters/currencyFormat.filters";
+    import calcLoanRecurrentPayment from "../../components/commonFunctions/financial/calcLoanRecurrentPayment.financial";
+    import splitInterestRate from "../../components/commonFunctions/financial/splitInterestRate.financial";
+    import genericAmortizationTable from "../../components/commonFunctions/financial/genericAmortizationTable.financial";
+    import findCurrentPaymentIndexInAmortizationTable from "../../components/commonFunctions/financial/findCurrentPaymentIndexInAmortizationTable.financial";
+    import amortizationTableWithExtraPayment from "../../components/commonFunctions/financial/amortizationTableWithExtraPayment.financial";
+
     
     export default {
         data() {
