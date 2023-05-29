@@ -257,7 +257,7 @@
             },
         },
         mounted() {
-            console.log("Vue 3 mounted");
+            // console.log("Vue 3 mounted");
             document.title = "World of Calculators - Mortgage Calculator";
         },
         

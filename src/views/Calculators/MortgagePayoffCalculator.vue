@@ -11,7 +11,7 @@
     import findCurrentPaymentIndexInAmortizationTable from "../../components/commonFunctions/financial/findCurrentPaymentIndexInAmortizationTable.financial";
     import amortizationTableWithExtraPayment from "../../components/commonFunctions/financial/amortizationTableWithExtraPayment.financial";
 
-    
+
     export default {
         data() {
             return {
@@ -99,13 +99,10 @@
                     // get new amortization table
                     this.alternativeAmortizationTable = amortizationTableWithExtraPayment(this.monthlyInterestRate, this.monthlyMortgagePayment, this.remainingLoanBalance, remainingPayments, this.extraRepaymentPerYear, this.extraRepaymentPerMonth);
 
-                    console.log(this.alternativeAmortizationTable)
                     
                     let alternateRemainingTerms = this.alternativeAmortizationTable.length;
                     this.alternateRemainingYears = Math.floor(alternateRemainingTerms/12);
                     this.alternateRemainingMonths = alternateRemainingTerms % 12;
-                    // console.log("alternative remaining months",this.alternateRemainingMonths)
-                    // console.log("alternative remaining years",this.alternateRemainingYears)
 
                     // get the alternative remaining interest payments
                     this.alternativeRemainingInterestPayments = this.getTotalInterestPayments(this.alternativeAmortizationTable);
@@ -157,7 +154,6 @@
             },
             getRemainingInterestPayments(amortizationTable) {
                 // returns the original interest payments
-                // console.log(this.amortizationTable)
                 return amortizationTable.filter(row => row.term > this.currentPaymentIndex).reduce((a, b) => a + b.interest, 0);
             },
 
