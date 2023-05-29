@@ -1,11 +1,17 @@
 <script >
 
-    import {currencyFormat} from "../../components/commonFunctions/filters";
-    import {calcLoanRecurrentPayment, splitInterestRate, genericAmortizationTable, findRemainingDebtInAmortizationTableByTerm, findCurrentPaymentIndexInAmortizationTable, amortizationTableWithExtraPayment} from "../../components/commonFunctions/loanPayments";
-    // import {calcAssetMaintenanceCost, calcOverallAssetCost, calcAssetMaintenanceCostTotal} from "../../components/commonFunctions/commonAssetCosts";
-    import {sumReduceArray} from "../../components/commonFunctions/arrayFunctions";
-    import  ChartComponent  from "../../components/ChartComponent.vue"
+    // import {findRemainingDebtInAmortizationTableByTerm} from "../../components/commonFunctions/loanPayments";
     
+    // import  ChartComponent  from "../../components/ChartComponent.vue"
+
+    import currencyFormat from "../../components/commonFunctions/dataFilters/currencyFormat.filters";
+    import calcLoanRecurrentPayment from "../../components/commonFunctions/financial/calcLoanRecurrentPayment.financial";
+    import splitInterestRate from "../../components/commonFunctions/financial/splitInterestRate.financial";
+    import genericAmortizationTable from "../../components/commonFunctions/financial/genericAmortizationTable.financial";
+    import findCurrentPaymentIndexInAmortizationTable from "../../components/commonFunctions/financial/findCurrentPaymentIndexInAmortizationTable.financial";
+    import amortizationTableWithExtraPayment from "../../components/commonFunctions/financial/amortizationTableWithExtraPayment.financial";
+
+
     export default {
         data() {
             return {
@@ -93,13 +99,10 @@
                     // get new amortization table
                     this.alternativeAmortizationTable = amortizationTableWithExtraPayment(this.monthlyInterestRate, this.monthlyMortgagePayment, this.remainingLoanBalance, remainingPayments, this.extraRepaymentPerYear, this.extraRepaymentPerMonth);
 
-                    console.log(this.alternativeAmortizationTable)
                     
                     let alternateRemainingTerms = this.alternativeAmortizationTable.length;
                     this.alternateRemainingYears = Math.floor(alternateRemainingTerms/12);
                     this.alternateRemainingMonths = alternateRemainingTerms % 12;
-                    // console.log("alternative remaining months",this.alternateRemainingMonths)
-                    // console.log("alternative remaining years",this.alternateRemainingYears)
 
                     // get the alternative remaining interest payments
                     this.alternativeRemainingInterestPayments = this.getTotalInterestPayments(this.alternativeAmortizationTable);
@@ -151,7 +154,6 @@
             },
             getRemainingInterestPayments(amortizationTable) {
                 // returns the original interest payments
-                // console.log(this.amortizationTable)
                 return amortizationTable.filter(row => row.term > this.currentPaymentIndex).reduce((a, b) => a + b.interest, 0);
             },
 

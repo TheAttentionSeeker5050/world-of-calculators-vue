@@ -1,7 +1,16 @@
 <script >
-    import {currencyFormat} from "../../components/commonFunctions/filters";
-    import {calcLoanRecurrentPayment, splitInterestRate} from "../../components/commonFunctions/loanPayments";
-    import {calcAssetMaintenanceCost, calcOverallAssetCost, calcAssetMaintenanceCostTotal} from "../../components/commonFunctions/commonAssetCosts";
+    // import {currencyFormat} from "../../components/commonFunctions/filters";
+    // import {calcLoanRecurrentPayment, splitInterestRate} from "../../components/commonFunctions/loanPayments";
+    // import {calcAssetMaintenanceCost, calcOverallAssetCost, calcAssetMaintenanceCostTotal} from "../../components/commonFunctions/commonAssetCosts";
+
+    import currencyFormat from "../../components/commonFunctions/dataFilters/currencyFormat.filters"
+    import calcLoanRecurrentPayment from "../../components/commonFunctions/financial/calcLoanRecurrentPayment.financial"
+    import splitInterestRate from "../../components/commonFunctions/financial/splitInterestRate.financial"
+    import calcAssetMaintenanceCost from "../../components/commonFunctions/financial/calcAssetMaintenanceCost.financial"
+    import calcOverallAssetCost from "../../components/commonFunctions/financial/calcOverallAssetCost.financial"
+    import calcAssetMaintenanceCostTotal from "../../components/commonFunctions/financial/calcAssetMaintenanceTotalCost.financial"
+    
+    
     import  ChartComponent  from "../../components/ChartComponent.vue"
     export default {
         data() {
@@ -44,7 +53,7 @@
                 startDate: new Date().toISOString().split("T")[0],
                 includeTaxesCostCheck: this.includeTaxesCostCheck,
                 propertyTaxes: 1.2,
-                propertyTaxesUnits: "percent",
+                propertyTaxesUnits: "percent", // percent or dollars
                 homeInsurance: 1500,
                 homeInsuranceUnits: "dollars",
                 pmiInsurance: 0,
@@ -248,7 +257,7 @@
             },
         },
         mounted() {
-            console.log("Vue 3 mounted");
+            // console.log("Vue 3 mounted");
             document.title = "World of Calculators - Mortgage Calculator";
         },
         
