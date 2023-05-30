@@ -147,19 +147,16 @@
                     <tr>
                         <td>Recurrent Payment</td>
                         <td v-html="formatCurrencyValues(recurrentLoanPayment)"></td>
-                        
                     </tr>
                     <tr>
                         <td>Total of <span v-html="totalNumberOfLoanTerms"></span> payments</td>
                         <td v-html="formatCurrencyValues(totalOfAllPayments)"></td>
-                        
                     </tr>
                     <tr>
                         <td>Total Interest</td>
                         <td v-html="formatCurrencyValues(totalInterestPaid)"></td>
-                        
                     </tr>
-                    
+
                 </tbody>
             </table>
         </div>
