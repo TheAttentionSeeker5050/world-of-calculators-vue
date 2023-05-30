@@ -3,7 +3,9 @@
     
     import calculateRecurrentLoanPayment from "../../../components/commonFunctions/financial/calcLoanRecurrentPayment.financial";
     import splitInterestRate from '../../../components/commonFunctions/financial/splitInterestRate.financial';
+    import ChartComponent from '../../../components/ChartComponent.vue';
 
+    import generateChartData from "../../../components/commonFunctions/general/generateChartData.general"
 
     export default {
         data() {
@@ -30,12 +32,32 @@
                 totalLoanCosts: null,
                 totalLoanCostAfterExtraFees: null,
 
+                // chart variables
+                chartTitle: 'Cost Breakdown',
+                chartConfigObject: null,
+                chartOptions: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            display: true,
+                        },
+                        title: {
+                            display: true,
+                            text: 'Cost Breakdown',
+                            font: {
+                                size: 20
+                            }
+                        }
+                    }
+                },
+
                 // state variables
                 displayResults: false,
             }
         },
         components: {
-
+            ChartComponent,
         },
         methods: {
             calculateLoan() {
@@ -64,6 +86,9 @@
                 // calculate total loan costs
                 this.totalLoanCosts = this.totalLoanAmount + this.totalInterestPaid;
 
+                // run the populate chart function
+                this.populateDonutChart();
+
                 // display results on page
                 this.displayResults = true;
 
@@ -78,7 +103,14 @@
             },
             formatCurrencyValues(value) {
                 return currencyFormat(value);
-            }
+            },
+            populateDonutChart() {
+                let title = 'Cost Breakdown';
+                let labels = ['Principal', 'Interest'];
+                let chartData = [this.totalLoanAmount, this.totalInterestPaid];
+                let chartType = 'doughnut';
+                this.chartConfigObject = generateChartData(title, labels, chartData, chartType);
+            },
         },
         mounted() {
 
@@ -211,9 +243,8 @@
             </table>
 
             <div id="graph-section">
-                <h3>Graph</h3>
                 <div id="graph-container">
-                    <!-- <canvas id="graph"></canvas> -->
+                    <ChartComponent v-if="displayResults" :options="chartOptions" :chartData="chartConfigObject" :chartTitle="chartTitle"/>
                 </div>
             </div>
         </div>
