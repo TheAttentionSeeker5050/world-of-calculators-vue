@@ -17,7 +17,7 @@
             <li><a class="fw-semibold text-primary" href="/calculators/mortgage">Mortgage Calculator</a></li>
             <li><a class="fw-semibold text-primary" href="/calculators/loan-payoff">Loan Payoff Calculator</a></li>
             <li><a class="fw-semibold text-primary" href="/calculators/loan-calculator">General Loan Calculator</a></li>
-            <li><a class="fw-semibold text-primary" href="/calculators/auto-loan-calculator">Auto Loan Calculator (pending)</a></li>
+            <li><a class="fw-semibold text-primary" href="/calculators/auto-loan-calculator">Auto Loan Calculator</a></li>
             <li><a class="fw-semibold text-primary" href="">Retirement Calculator (pending)</a></li>
             <li><a class="fw-semibold text-primary" href="">Compount Interest Calculator (pending)</a></li>
             <li><a class="fw-semibold text-primary" href="">Rental Property Calculator (pending)</a></li>
