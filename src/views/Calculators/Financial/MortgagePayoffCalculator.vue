@@ -4,12 +4,12 @@
     
     // import  ChartComponent  from "../../components/ChartComponent.vue"
 
-    import currencyFormat from "../../components/commonFunctions/dataFilters/currencyFormat.filters";
-    import calcLoanRecurrentPayment from "../../components/commonFunctions/financial/calcLoanRecurrentPayment.financial";
-    import splitInterestRate from "../../components/commonFunctions/financial/splitInterestRate.financial";
-    import genericAmortizationTable from "../../components/commonFunctions/financial/genericAmortizationTable.financial";
-    import findCurrentPaymentIndexInAmortizationTable from "../../components/commonFunctions/financial/findCurrentPaymentIndexInAmortizationTable.financial";
-    import amortizationTableWithExtraPayment from "../../components/commonFunctions/financial/amortizationTableWithExtraPayment.financial";
+    import currencyFormat from "../../../components/commonFunctions/dataFilters/currencyFormat.filters";
+    import calcLoanRecurrentPayment from "../../../components/commonFunctions/financial/calcLoanRecurrentPayment.financial";
+    import splitInterestRate from "../../../components/commonFunctions/financial/splitInterestRate.financial";
+    import genericAmortizationTable from "../../../components/commonFunctions/financial/genericAmortizationTable.financial";
+    import findCurrentPaymentIndexInAmortizationTable from "../../../components/commonFunctions/financial/findCurrentPaymentIndexInAmortizationTable.financial";
+    import amortizationTableWithExtraPayment from "../../../components/commonFunctions/financial/amortizationTableWithExtraPayment.financial";
 
 
     export default {
@@ -230,7 +230,7 @@
 <template>
     <div id="main-page-wrapper" class="my-5 container-sm">
         <h1 class="text-center my-4">Mortgage Payoff Calculator</h1>
-        <h2 class="text-center my-4">If You Know the Remaining Loan Term</h2>
+        <!-- <h2 class="text-center my-4">If You Know the Remaining Loan Term</h2> -->
 
         <form id="calculator-form" class="container-fluid ">
             <div class="row">

@@ -3,15 +3,15 @@
     // import {calcLoanRecurrentPayment, splitInterestRate} from "../../components/commonFunctions/loanPayments";
     // import {calcAssetMaintenanceCost, calcOverallAssetCost, calcAssetMaintenanceCostTotal} from "../../components/commonFunctions/commonAssetCosts";
 
-    import currencyFormat from "../../components/commonFunctions/dataFilters/currencyFormat.filters"
-    import calcLoanRecurrentPayment from "../../components/commonFunctions/financial/calcLoanRecurrentPayment.financial"
-    import splitInterestRate from "../../components/commonFunctions/financial/splitInterestRate.financial"
-    import calcAssetMaintenanceCost from "../../components/commonFunctions/financial/calcAssetMaintenanceCost.financial"
-    import calcOverallAssetCost from "../../components/commonFunctions/financial/calcOverallAssetCost.financial"
-    import calcAssetMaintenanceCostTotal from "../../components/commonFunctions/financial/calcAssetMaintenanceTotalCost.financial"
+    import currencyFormat from "../../../components/commonFunctions/dataFilters/currencyFormat.filters"
+    import calcLoanRecurrentPayment from "../../../components/commonFunctions/financial/calcLoanRecurrentPayment.financial"
+    import splitInterestRate from "../../../components/commonFunctions/financial/splitInterestRate.financial"
+    import calcAssetMaintenanceCost from "../../../components/commonFunctions/financial/calcAssetMaintenanceCost.financial"
+    import calcOverallAssetCost from "../../../components/commonFunctions/financial/calcOverallAssetCost.financial"
+    import calcAssetMaintenanceCostTotal from "../../../components/commonFunctions/financial/calcAssetMaintenanceTotalCost.financial"
     
     
-    import  ChartComponent  from "../../components/ChartComponent.vue"
+    import  ChartComponent  from "../../../components/ChartComponent.vue"
     export default {
         data() {
             return {

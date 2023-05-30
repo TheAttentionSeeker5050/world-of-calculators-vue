@@ -1,8 +1,8 @@
 <script >
-    import currencyFormat from '../../components/commonFunctions/dataFilters/currencyFormat.filters';
-    import convertAPYToCompoundedRate from '../../components/commonFunctions/financial/convertAPYToCompoundedRate.finance';
-    import convertCompoundedRateToPaybackPeriodRate from '../../components/commonFunctions/financial/convertCompoundedRateToPaybackPeriodRate.finance';
-    import calculateRecurrentLoanPayment from "../../components/commonFunctions/financial/calcLoanRecurrentPayment.financial";
+    import currencyFormat from '../../../components/commonFunctions/dataFilters/currencyFormat.filters';
+    import convertAPYToCompoundedRate from '../../../components/commonFunctions/financial/convertAPYToCompoundedRate.finance';
+    import convertCompoundedRateToPaybackPeriodRate from '../../../components/commonFunctions/financial/convertCompoundedRateToPaybackPeriodRate.finance';
+    import calculateRecurrentLoanPayment from "../../../components/commonFunctions/financial/calcLoanRecurrentPayment.financial";
 
     export default {
         data() {

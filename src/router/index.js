@@ -1,10 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
 import CalculatorsIndex from "../views/CalculatorsIndex.vue";
-import MortgageCalc from "../views/Calculators/MortgageCalc.vue";
-import MortgagePayoffCalculator from "../views/Calculators/MortgagePayoffCalculator.vue";
+import MortgageCalc from "../views/Calculators/Financial/MortgageCalc.vue";
+import MortgagePayoffCalculator from "../views/Calculators/Financial/MortgagePayoffCalculator.vue";
 import PageNotFound from "../views/PageNotFound.vue";
-import LoanCalculator from "../views/Calculators/LoanCalculator.vue";
+import LoanCalculator from "../views/Calculators/Financial/LoanCalculator.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
