@@ -2,6 +2,8 @@
     import currencyFormat from '../../../components/commonFunctions/dataFilters/currencyFormat.filters';
     
     import calculateRecurrentLoanPayment from "../../../components/commonFunctions/financial/calcLoanRecurrentPayment.financial";
+    import splitInterestRate from '../../../components/commonFunctions/financial/splitInterestRate.financial';
+
 
     export default {
         data() {
@@ -13,8 +15,10 @@
                 cashIncentives: 0,
                 downPayment: 5000,
                 tradeInValue: 0,
-                salesTax: 19,
-                otherFees: 0,
+                amountOwedOnTradeIn: 0,
+                salesTaxPercent: 7,
+                otherFees: 2000,
+
 
                 // results variables
                 recurrentPayment: null,
@@ -36,11 +40,34 @@
         methods: {
             calculateLoan() {
                 
+                // calculate the interest rate per month in decimal form
+                let interestRateMonthly = splitInterestRate(this.interestRate, 12);
 
+                // calculate the total loan amount
+                this.totalLoanAmount = this.loanAmount  - this.downPayment - this.tradeInValue - this.cashIncentives + this.amountOwedOnTradeIn; 
 
+                // calculate monthly payment
+                this.recurrentPayment = calculateRecurrentLoanPayment(this.totalLoanAmount, interestRateMonthly, this.loanTermMonths);
+
+                // calculate sales tax
+                this.salesTax = (this.totalLoanAmount + this.downPayment) * (this.salesTaxPercent / 100);
+
+                // calculate up front payment
+                this.upFrontPayment = this.downPayment + this.salesTax + this.otherFees;
+
+                // calculate total of all payments
+                this.totalOfAllPayments = this.recurrentPayment * this.loanTermMonths;
+
+                // calculate total interest paid
+                this.totalInterestPaid = this.totalOfAllPayments - this.totalLoanAmount;
+
+                // calculate total loan costs
+                this.totalLoanCosts = this.totalLoanAmount + this.totalInterestPaid;
 
                 // display results on page
                 this.displayResults = true;
+
+
             },
             resetForm() {
                 // reset form data
@@ -112,19 +139,24 @@
                 </div>
 
                 <div class="input-group mb-3 col-md">
-                    <span class="input-group-text">Sales Tax:</span>
-                    <input v-model="salesTax" type="number" class="form-control" placeholder="Sales Tax" aria-label="Sales Tax">
-                    <span class="input-group-text">%</span>
+                    <span class="input-group-text">Debt On Trade-In:</span>
+                    <input v-model="amountOwedOnTradeIn" type="number" class="form-control" placeholder="Trade-In Owed" aria-label="Trade-In Owed">
+                    <span class="input-group-text">$</span>
                 </div>
             </div>
 
             <div class="row">
                 <div class="input-group mb-3 col-md">
+                    <span class="input-group-text">Sales Tax:</span>
+                    <input v-model="salesTaxPercent" type="number" class="form-control" placeholder="Sales Tax" aria-label="Sales Tax">
+                    <span class="input-group-text">%</span>
+                </div>
+
+                <div class="input-group mb-3 col-md">
                     <span class="input-group-text">Other Fees:</span>
                     <input v-model="otherFees" type="number" class="form-control" placeholder="Other Fees" aria-label="Other Fees">
                     <span class="input-group-text">$</span>
                 </div>
-                
             </div>
 
             <div class="text-center my-3 mx-auto grid gap-3">
