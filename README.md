@@ -1,7 +1,13 @@
 # World of Calculators
 
-Built a versatile calculator web app with Vue.js and Tailwind CSS, featuring tools for mortgages, payment rates, car loans, and retirement planning. Includes data visualization. You can access a deployed version of this site on https://world-of-calculators.nicolas-castellano.com/.
+A web application offering a variety of calculators for different needs.
 
+## Description
+
+A web application offering a variety of calculators for different needs. Built using Vue.js and Tailwind CSS, the application maintains a clean separation of concerns between calculation methods, page layouts, and components. Features include calculators for mortgage payouts, monthly or bi-weekly rates, car loans, retirement planning, and unit conversions. Also includes graph data representation of calculation results.
+
+## Site Demo
+You can access a deployed version of this site at https://world-of-calculators.nicolas-castellano.com/.
 
 ## Recommended IDE Setup
 
