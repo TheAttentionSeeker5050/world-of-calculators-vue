@@ -1,6 +1,7 @@
-# world-of-calculators
+# World of Calculators
 
-This template should help get you started developing with Vue 3 in Vite.
+Built a versatile calculator web app with Vue.js and Tailwind CSS, featuring tools for mortgages, payment rates, car loans, and retirement planning. Includes data visualization. You can access a deployed version of this site on https://world-of-calculators.nicolas-castellano.com/.
+
 
 ## Recommended IDE Setup
 
