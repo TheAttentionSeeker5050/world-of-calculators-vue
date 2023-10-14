@@ -1,6 +1,6 @@
 # World of Calculators
 
-A web application offering a variety of calculators for different needs.
+A web application made using Vite, Vue.js, Tailwind and Charts.js
 
 ## Description
 
