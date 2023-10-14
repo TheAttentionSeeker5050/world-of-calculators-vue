@@ -1,6 +1,6 @@
 # World of Calculators
 
-A web application made using Vite, Vue.js, Tailwind and Charts.js
+This project is a web application made using Vite, Vue.js, Tailwind, and Charts.js
 
 ## Description
 
