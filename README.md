@@ -7,7 +7,7 @@ This project is a web application made using Vite, Vue.js, Tailwind, and Charts.
 A web application offering a variety of calculators for different needs. Built using Vue.js and Tailwind CSS, the application maintains a clean separation of concerns between calculation methods, page layouts, and components. Features include calculators for mortgage payouts, monthly or bi-weekly rates, car loans, retirement planning, and unit conversions. Also includes graph data representation of calculation results.
 
 ## Site Demo
-You can access a deployed version of this site at https://world-of-calculators.nicolas-castellano.com/.
+You can access a deployed version of this site at [https://world-of-calculators.netlify.app/](https://world-of-calculators.netlify.app/).
 
 ## Recommended IDE Setup
 
